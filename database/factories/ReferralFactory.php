@@ -1,0 +1,27 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Referral>
+ */
+class ReferralFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
+    {
+        $user = UserFactory::new()->create();
+
+        return [
+            'email' => fake()->safeEmail(),
+            'referred_by' => $user->id,
+            'code' => fake()->uuid(),
+        ];
+    }
+}
